@@ -1,7 +1,7 @@
 # Amazon Online Shopping Database: DBMS Project
 
 **Course:** Database Management Systems · **Year:** B.Tech 2nd year · **Team size:** 4
-**Database:** PostgreSQL 15 or newer · **Final submission:** Fri 20 Nov 2026
+**Database:** PostgreSQL 15 or newer · **Final submission:** Mon 23 Nov 2026
 **Topics used:** Data types & constraints · Keys & relationships · Normalization · Query execution plans · Indexing · Query optimization · VACUUM/ANALYZE · Partitioning & sharding
 
 ## Files in this folder
@@ -320,7 +320,7 @@ Also include:
 
 Your optimizations worked on 120,000 orders. Next year the business expects **20× the volume**.
 
-By **Sat 14 Nov 2026**, faculty will release **`large_data.zip`**: the same 11 CSV files with about **20× the rows** (≈ 2,400,000 orders, ≈ 4,800,000 order items, ≈ 600,000 products, ≈ 600,000 customers). Until then, work on the design part of the report.
+By **Thu 19 Nov 2026**, faculty will release **`large_data.zip`**: the same 11 CSV files with about **20× the rows** (≈ 2,400,000 orders, ≈ 4,800,000 order items, ≈ 600,000 products, ≈ 600,000 customers). Until then, work on the design part of the report.
 
 ### 5.1 What to do with the large dataset
 1. Create a new database. Run **your** `01_schema.sql`, load `large_data/` with your load script (change the folder name only), then run **your** `05_indexes.sql` and `ANALYZE`.
@@ -414,10 +414,10 @@ amazon-dbms-<team-no>/
 | Due | Work | Checkpoint |
 |-----|------|------------|
 | Mon 2 Nov 2026 | Clone this repo into your team's DE repo, add members, commit `team.json` | **CP0** Setup |
-| Fri 6 Nov 2026 | Phase 1 + Phase 2 (schema, load, ER, data dictionary) | **CP1** Schema loads all seed data with no errors |
-| Tue 10 Nov 2026 | Phase 3 (baseline, 3 runs, average) + start Phase 4 | **CP2** Baseline table for all 30 queries committed |
-| Sat 14 Nov 2026 | Phase 4 (indexes, rewrites, wrong-result query) | **CP3** Optimization table committed |
-| Fri 20 Nov 2026 | Phase 5 on the large dataset + final report | **CP4 Final submission:** last commit on the default branch |
+| Mon 16 Nov 2026 | Phase 1 + Phase 2 (schema, load, ER, data dictionary) | **CP1** Schema loads all seed data with no errors |
+| Tue 17 Nov 2026 | Phase 3 (baseline, 3 runs, average) + start Phase 4 | **CP2** Baseline table for all 30 queries committed |
+| Thu 19 Nov 2026 | Phase 4 (indexes, rewrites, wrong-result query) | **CP3** Optimization table committed |
+| Mon 23 Nov 2026 | Phase 5 on the large dataset + final report | **CP4 Final submission:** last commit on the default branch |
 
 Full list of files per checkpoint, including the AP repo: [`CHECKPOINTS.md`](CHECKPOINTS.md).
 

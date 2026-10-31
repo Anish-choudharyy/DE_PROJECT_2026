@@ -1,6 +1,6 @@
 # Checkpoints: Amazon Online Shopping Database
 
-**Final submission: Friday 20 November 2026, 11:59 PM.** Evaluation runs 25 Nov – 2 Dec 2026.
+**Final submission: Monday 23 November 2026, 11:59 PM.** Evaluation runs 25 Nov – 2 Dec 2026.
 
 Progress is checked automatically from GitHub every few hours. A checkpoint counts as done when its files
 exist in your repository **on the default branch**, with real content, by the due date. Every member must
@@ -39,10 +39,10 @@ Then:
 | # | Due | Checkpoint | DE repo must contain | AP repo must contain |
 |---|-----|------------|----------------------------------|----------------------|
 | **CP0** | Mon 2 Nov 2026 | Setup | `queries/workload_30.sql`<br>`benchmarks/run_benchmark.sh`<br>`team.json` | — |
-| **CP1** | Fri 6 Nov 2026 | Schema & normalization | `docs/01_problem_understanding.md`<br>`docs/02_schema_design.md`<br>`sql/01_schema.sql`<br>`sql/02_load_data.sql`<br>`diagrams/er_diagram.*` | `dbms/01_normalization.md` |
-| **CP2** | Tue 10 Nov 2026 | Baseline timings | `docs/03_baseline_timings.md`<br>`benchmarks/results/baseline/summary.csv` | `dbms/02_er_diagram.*`<br>`dbms/03_schema.sql` |
-| **CP3** | Sat 14 Nov 2026 | Optimization | `sql/05_indexes.sql`<br>`sql/06_optimized_queries.sql`<br>`docs/04_optimization_report.md`<br>`benchmarks/results/optimized/summary.csv` | `dbms/04_queries.sql` |
-| **CP4** | Fri 20 Nov 2026 | Final submission | `docs/05_scalability_report.md`<br>`sql/08_partitioning.sql`<br>`benchmarks/results/large/summary.csv` | `dbms/05_query_timings.md`<br>`dbms/plans/` |
+| **CP1** | Mon 16 Nov 2026 | Schema & normalization | `docs/01_problem_understanding.md`<br>`docs/02_schema_design.md`<br>`sql/01_schema.sql`<br>`sql/02_load_data.sql`<br>`diagrams/er_diagram.*` | `dbms/01_normalization.md` |
+| **CP2** | Tue 17 Nov 2026 | Baseline timings | `docs/03_baseline_timings.md`<br>`benchmarks/results/baseline/summary.csv` | `dbms/02_er_diagram.*`<br>`dbms/03_schema.sql` |
+| **CP3** | Thu 19 Nov 2026 | Optimization | `sql/05_indexes.sql`<br>`sql/06_optimized_queries.sql`<br>`docs/04_optimization_report.md`<br>`benchmarks/results/optimized/summary.csv` | `dbms/04_queries.sql` |
+| **CP4** | Mon 23 Nov 2026 | Final submission | `docs/05_scalability_report.md`<br>`sql/08_partitioning.sql`<br>`benchmarks/results/large/summary.csv` | `dbms/05_query_timings.md`<br>`dbms/plans/` |
 
 `*` means any image or PDF (`.png`, `.jpg`, `.svg`, `.pdf`). A folder entry means at least one file inside it.
 
