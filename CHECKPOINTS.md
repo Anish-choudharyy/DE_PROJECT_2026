@@ -1,6 +1,6 @@
 # Checkpoints: Amazon Online Shopping Database
 
-**Final submission: Monday 23 November 2026, 11:59 PM.** Evaluation runs 25 Nov – 2 Dec 2026.
+**Final submission: Monday 23 November 2026, 11:59 PM.** **Individual analysis (CP5): Wed 25 and Thu 26 November 2026, in class time.** Evaluation runs 25 Nov – 2 Dec 2026.
 
 Progress is checked automatically from GitHub every few hours. A checkpoint counts as done when its files
 exist in your repository **on the default branch**, with real content, by the due date. Every member must
@@ -43,6 +43,7 @@ Then:
 | **CP2** | Tue 17 Nov 2026 | Baseline timings | `docs/03_baseline_timings.md`<br>`benchmarks/results/baseline/summary.csv` | `dbms/02_er_diagram.*`<br>`dbms/03_schema.sql` |
 | **CP3** | Thu 19 Nov 2026 | Optimization | `sql/05_indexes.sql`<br>`sql/06_optimized_queries.sql`<br>`docs/04_optimization_report.md`<br>`benchmarks/results/optimized/summary.csv` | `dbms/04_queries.sql` |
 | **CP4** | Mon 23 Nov 2026 | Final submission | `docs/05_scalability_report.md`<br>`sql/08_partitioning.sql`<br>`benchmarks/results/large/summary.csv` | `dbms/05_query_timings.md`<br>`dbms/plans/` |
+| **CP5** | Wed 25 – Thu 26 Nov 2026 | Individual analysis, in class time | — | — |
 
 `*` means any image or PDF (`.png`, `.jpg`, `.svg`, `.pdf`). A folder entry means at least one file inside it.
 
