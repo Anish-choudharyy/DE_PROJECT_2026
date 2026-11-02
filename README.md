@@ -33,14 +33,14 @@
 
 ## How this project works
 
-| Phase | What you do | You submit | Marks |
-|-------|-------------|------------|------:|
-| 1 | Understand the problem statements | `docs/01_problem_understanding.md` | 5 |
-| 2 | Work out the database schema **from the seed data** and load it | `sql/01_schema.sql`, `sql/02_load_data.sql`, `docs/02_schema_design.md` | 25 |
-| 3 | Run the **30 given SQL queries** and record their execution time | `docs/03_baseline_timings.md`, `benchmarks/results/baseline/` | 15 |
-| 4 | Optimize the queries and record the new times | `sql/05_indexes.sql`, `sql/06_optimized_queries.sql`, `docs/04_optimization_report.md`, `benchmarks/results/optimized/` | 30 |
-| 5 | Scalability test on the **large dataset** (given later by faculty) and final report | `docs/05_scalability_report.md`, `benchmarks/results/large/` | 25 |
-| | **Total** | | **100** |
+| Phase | What you do | You submit | Counts toward | Marks |
+|-------|-------------|------------|---------------|------:|
+| 1 | Understand the problem statements | `docs/01_problem_understanding.md` | Query Execution | 2 |
+| 2 | Work out the database schema **from the seed data** and load it | `sql/01_schema.sql`, `sql/02_load_data.sql`, `docs/02_schema_design.md` | Query Execution | 5 |
+| 3 | Run the **30 given SQL queries** and record their execution time | `docs/03_baseline_timings.md`, `benchmarks/results/baseline/` | Query Execution | 3 |
+| 4 | Optimize the queries and record the new times | `sql/05_indexes.sql`, `sql/06_optimized_queries.sql`, `docs/04_optimization_report.md`, `benchmarks/results/optimized/` | Code Optimization | 16 |
+| 5 | Scalability test on the **large dataset** (given later by faculty) and final report | `docs/05_scalability_report.md`, `benchmarks/results/large/` | Code Optimization | 14 |
+| | **Total** | | | **40** |
 
 ---
 
@@ -424,15 +424,21 @@ Full list of files per checkpoint, including the AP repo: [`CHECKPOINTS.md`](CHE
 
 ---
 
-## Evaluation (100 marks)
+## Evaluation (40 marks)
+
+These 40 marks are the DE part of the project: **Query Execution (10)** and **Code Optimization (30)**.
+The AP project (20) and your Individual analysis (40) make up the rest of the 100.
 
 | Phase | Criteria | Marks |
 |-------|----------|------:|
-| 1 | Problems understood, stakeholders and query groups correctly identified | 5 |
-| 2 | Correct data types (6), keys and foreign keys with justified delete rules (6), ≥12 meaningful CHECK / NOT NULL / UNIQUE constraints (6), ER diagram + normal-form analysis (4), data loads cleanly + integrity checks (3) | 25 |
-| 3 | All 30 queries measured with the required method (8), raw plans committed (3), scan type and reason for each query (4) | 15 |
-| 4 | Speed-up achieved with appropriate techniques (12), every index justified (5), results proven unchanged (4), wrong-result query found and explained (4), write overhead and index storage reported (5) | 30 |
-| 5 | Large-dataset results with all targets met or explained (8), growth analysis (6), scale-only problems found and fixed (5), partitioning DDL + sharding/replica design backed by your numbers (6) | 25 |
+| | **Query Execution** | **10** |
+| 1 | Problems understood, stakeholders and query groups correctly identified | 2 |
+| 2 | Correct data types (1), keys and foreign keys with justified delete rules (1), ≥12 meaningful CHECK / NOT NULL / UNIQUE constraints (1), ER diagram + normal-form analysis (1), data loads cleanly + integrity checks (1) | 5 |
+| 3 | All 30 queries measured with the required method: 3 runs, average (1), raw plans committed (1), scan type and reason for each query (1) | 3 |
+| | **Code Optimization** | **30** |
+| 4 | Speed-up achieved with appropriate techniques (6), every index justified (3), results proven unchanged (2), wrong-result query found and explained (2), write overhead and index storage reported (3) | 16 |
+| 5 | Large-dataset results with all targets met or explained (4), growth analysis (3), scale-only problems found and fixed (3), partitioning DDL + sharding/replica design backed by your numbers (4) | 14 |
+| | **Total** | **40** |
 
 **Integrity rules**
 - Every number in your reports must match the raw plan files in `benchmarks/results/`. Copied or invented timings make the whole phase score 0.
