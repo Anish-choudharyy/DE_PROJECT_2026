@@ -38,7 +38,7 @@ Then:
 
 | # | Due | Checkpoint | DE repo must contain | AP repo must contain |
 |---|-----|------------|----------------------------------|----------------------|
-| **CP0** | Mon 2 Nov 2026 | Setup | `queries/workload_30.sql`<br>`benchmarks/run_benchmark.sh`<br>`team.json` | — |
+| **CP0** | Tue 3 Nov 2026 | Setup | `queries/workload_30.sql`<br>`benchmarks/run_benchmark.sh`<br>`team.json` | — |
 | **CP1** | Mon 16 Nov 2026 | Schema & normalization | `docs/01_problem_understanding.md`<br>`docs/02_schema_design.md`<br>`sql/01_schema.sql`<br>`sql/02_load_data.sql`<br>`diagrams/er_diagram.*` | `dbms/01_normalization.md` |
 | **CP2** | Tue 17 Nov 2026 | Baseline timings | `docs/03_baseline_timings.md`<br>`benchmarks/results/baseline/summary.csv` | `dbms/02_er_diagram.*`<br>`dbms/03_schema.sql` |
 | **CP3** | Thu 19 Nov 2026 | Optimization | `sql/05_indexes.sql`<br>`sql/06_optimized_queries.sql`<br>`docs/04_optimization_report.md`<br>`benchmarks/results/optimized/summary.csv` | `dbms/04_queries.sql` |
