@@ -1,0 +1,219 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="100%" height="100%" style="background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="headerGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="headerGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="800" y="45" text-anchor="middle" fill="#f8fafc" font-size="26" font-weight="700" letter-spacing="1">AMAZON ONLINE SHOPPING — ENTITY RELATIONSHIP DIAGRAM</text>
+  <text x="800" y="75" text-anchor="middle" fill="#94a3b8" font-size="14">DBMS Project · Team T0063 · PostgreSQL 16 Schema</text>
+
+  <!-- Entities -->
+
+  <!-- CITIES (x: 50, y: 120) -->
+  <g transform="translate(50, 120)" filter="url(#shadow)">
+    <rect width="220" height="130" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 212 0 A 8 8 0 0 1 220 8 L 220 38 L 0 38 Z" fill="url(#headerGrad)"/>
+    <text x="110" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">cities</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  city_id</text><text x="140" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#f1f5f9" font-size="12">      city_name</text><text x="140" y="85" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="110" fill="#f1f5f9" font-size="12">      state</text><text x="140" y="110" fill="#94a3b8" font-size="12">text</text>
+  </g>
+
+  <!-- CUSTOMERS (x: 340, y: 120) -->
+  <g transform="translate(340, 120)" filter="url(#shadow)">
+    <rect width="250" height="230" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 242 0 A 8 8 0 0 1 250 8 L 250 38 L 0 38 Z" fill="url(#headerGrad)"/>
+    <text x="125" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">customers</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  customer_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#f1f5f9" font-size="12">      full_name</text><text x="160" y="85" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="110" fill="#f1f5f9" font-size="12">      email</text><text x="160" y="110" fill="#94a3b8" font-size="12">text [UQ]</text>
+    <text x="15" y="135" fill="#f1f5f9" font-size="12">      phone</text><text x="160" y="135" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="160" fill="#a7f3d0" font-size="12" font-weight="bold">FK  city_id</text><text x="160" y="160" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">      is_prime</text><text x="160" y="185" fill="#94a3b8" font-size="12">boolean</text>
+    <text x="15" y="210" fill="#f1f5f9" font-size="12">      signup_date</text><text x="160" y="210" fill="#94a3b8" font-size="12">date</text>
+  </g>
+
+  <!-- ADDRESSES (x: 660, y: 120) -->
+  <g transform="translate(660, 120)" filter="url(#shadow)">
+    <rect width="250" height="210" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 242 0 A 8 8 0 0 1 250 8 L 250 38 L 0 38 Z" fill="url(#headerGrad)"/>
+    <text x="125" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">addresses</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  address_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#a7f3d0" font-size="12" font-weight="bold">FK  customer_id</text><text x="160" y="85" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="110" fill="#f1f5f9" font-size="12">      label</text><text x="160" y="110" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="135" fill="#f1f5f9" font-size="12">      line1</text><text x="160" y="135" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="160" fill="#a7f3d0" font-size="12" font-weight="bold">FK  city_id</text><text x="160" y="160" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">      pincode</text><text x="160" y="185" fill="#94a3b8" font-size="12">text</text>
+  </g>
+
+  <!-- CATEGORIES (x: 980, y: 120) -->
+  <g transform="translate(980, 120)" filter="url(#shadow)">
+    <rect width="250" height="150" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 242 0 A 8 8 0 0 1 250 8 L 250 38 L 0 38 Z" fill="url(#headerGrad2)"/>
+    <text x="125" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">categories</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  category_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#f1f5f9" font-size="12">      category_name</text><text x="160" y="85" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="110" fill="#a7f3d0" font-size="12" font-weight="bold">FK  parent_cat_id</text><text x="160" y="110" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="135" fill="#f1f5f9" font-size="12">      is_digital</text><text x="160" y="135" fill="#94a3b8" font-size="12">boolean</text>
+  </g>
+
+  <!-- SELLERS (x: 1300, y: 120) -->
+  <g transform="translate(1300, 120)" filter="url(#shadow)">
+    <rect width="250" height="210" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 242 0 A 8 8 0 0 1 250 8 L 250 38 L 0 38 Z" fill="url(#headerGrad2)"/>
+    <text x="125" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">sellers</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  seller_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#f1f5f9" font-size="12">      business_name</text><text x="160" y="85" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="110" fill="#f1f5f9" font-size="12">      gstin</text><text x="160" y="110" fill="#94a3b8" font-size="12">text [UQ]</text>
+    <text x="15" y="135" fill="#a7f3d0" font-size="12" font-weight="bold">FK  city_id</text><text x="160" y="135" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="160" fill="#f1f5f9" font-size="12">      seller_rating</text><text x="160" y="160" fill="#94a3b8" font-size="12">numeric</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">      status</text><text x="160" y="185" fill="#94a3b8" font-size="12">text</text>
+  </g>
+
+  <!-- PRODUCTS (x: 1080, y: 440) -->
+  <g transform="translate(1080, 440)" filter="url(#shadow)">
+    <rect width="260" height="280" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 252 0 A 8 8 0 0 1 260 8 L 260 38 L 0 38 Z" fill="url(#headerGrad2)"/>
+    <text x="130" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">products</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  product_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#f1f5f9" font-size="12">      asin</text><text x="160" y="85" fill="#94a3b8" font-size="12">text [UQ]</text>
+    <text x="15" y="110" fill="#a7f3d0" font-size="12" font-weight="bold">FK  seller_id</text><text x="160" y="110" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="135" fill="#a7f3d0" font-size="12" font-weight="bold">FK  category_id</text><text x="160" y="135" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="160" fill="#f1f5f9" font-size="12">      title</text><text x="160" y="160" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">      price / mrp</text><text x="160" y="185" fill="#94a3b8" font-size="12">numeric</text>
+    <text x="15" y="210" fill="#f1f5f9" font-size="12">      stock_qty</text><text x="160" y="210" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="235" fill="#f1f5f9" font-size="12">      avg_rating</text><text x="160" y="235" fill="#94a3b8" font-size="12">numeric</text>
+    <text x="15" y="260" fill="#f1f5f9" font-size="12">      status</text><text x="160" y="260" fill="#94a3b8" font-size="12">text</text>
+  </g>
+
+  <!-- CART_ITEMS (x: 100, y: 470) -->
+  <g transform="translate(100, 470)" filter="url(#shadow)">
+    <rect width="240" height="150" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 232 0 A 8 8 0 0 1 240 8 L 240 38 L 0 38 Z" fill="url(#headerGrad)"/>
+    <text x="120" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">cart_items</text>
+    <text x="15" y="60" fill="#e879f9" font-size="12" font-weight="bold">CPK,FK  customer_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#e879f9" font-size="12" font-weight="bold">CPK,FK  product_id</text><text x="160" y="85" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="110" fill="#f1f5f9" font-size="12">      quantity</text><text x="160" y="110" fill="#94a3b8" font-size="12">smallint</text>
+    <text x="15" y="135" fill="#f1f5f9" font-size="12">      added_at</text><text x="160" y="135" fill="#94a3b8" font-size="12">timestamptz</text>
+  </g>
+
+  <!-- ORDERS (x: 480, y: 450) -->
+  <g transform="translate(480, 450)" filter="url(#shadow)">
+    <rect width="260" height="260" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 252 0 A 8 8 0 0 1 260 8 L 260 38 L 0 38 Z" fill="url(#headerGrad3)"/>
+    <text x="130" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">orders</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  order_id</text><text x="170" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#a7f3d0" font-size="12" font-weight="bold">FK  customer_id</text><text x="170" y="85" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="110" fill="#a7f3d0" font-size="12" font-weight="bold">FK  address_id</text><text x="170" y="110" fill="#94a3b8" font-size="12">int (opt)</text>
+    <text x="15" y="135" fill="#f1f5f9" font-size="12">      ordered_at</text><text x="170" y="135" fill="#94a3b8" font-size="12">timestamptz</text>
+    <text x="15" y="160" fill="#f1f5f9" font-size="12">      payment_method</text><text x="170" y="160" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">      total_amount</text><text x="170" y="185" fill="#94a3b8" font-size="12">numeric</text>
+    <text x="15" y="210" fill="#f1f5f9" font-size="12">      status</text><text x="170" y="210" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="235" fill="#f1f5f9" font-size="12">      shipped / delivered</text><text x="170" y="235" fill="#94a3b8" font-size="12">timestamptz</text>
+  </g>
+
+  <!-- ORDER_ITEMS (x: 480, y: 810) -->
+  <g transform="translate(480, 810)" filter="url(#shadow)">
+    <rect width="260" height="200" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 252 0 A 8 8 0 0 1 260 8 L 260 38 L 0 38 Z" fill="url(#headerGrad3)"/>
+    <text x="130" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">order_items</text>
+    <text x="15" y="60" fill="#e879f9" font-size="12" font-weight="bold">CPK,FK order_id</text><text x="170" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#38bdf8" font-size="12" font-weight="bold">CPK     line_no</text><text x="170" y="85" fill="#94a3b8" font-size="12">smallint</text>
+    <text x="15" y="110" fill="#a7f3d0" font-size="12" font-weight="bold">FK      product_id</text><text x="170" y="110" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="135" fill="#a7f3d0" font-size="12" font-weight="bold">FK      seller_id</text><text x="170" y="135" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="160" fill="#f1f5f9" font-size="12">        quantity</text><text x="170" y="160" fill="#94a3b8" font-size="12">smallint</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">        unit_price</text><text x="170" y="185" fill="#94a3b8" font-size="12">numeric</text>
+  </g>
+
+  <!-- RETURNS (x: 100, y: 810) -->
+  <g transform="translate(100, 810)" filter="url(#shadow)">
+    <rect width="250" height="210" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 242 0 A 8 8 0 0 1 250 8 L 250 38 L 0 38 Z" fill="url(#headerGrad3)"/>
+    <text x="125" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">returns</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  return_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#a7f3d0" font-size="12" font-weight="bold">FK  (order_id, line_no)</text><text x="160" y="85" fill="#94a3b8" font-size="12">order_items</text>
+    <text x="15" y="110" fill="#f1f5f9" font-size="12">      reason</text><text x="160" y="110" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="135" fill="#f1f5f9" font-size="12">      requested_at</text><text x="160" y="135" fill="#94a3b8" font-size="12">timestamptz</text>
+    <text x="15" y="160" fill="#f1f5f9" font-size="12">      status</text><text x="160" y="160" fill="#94a3b8" font-size="12">text</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">      refund_amount</text><text x="160" y="185" fill="#94a3b8" font-size="12">numeric</text>
+  </g>
+
+  <!-- PRODUCT_REVIEWS (x: 1080, y: 810) -->
+  <g transform="translate(1080, 810)" filter="url(#shadow)">
+    <rect width="260" height="230" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 252 0 A 8 8 0 0 1 260 8 L 260 38 L 0 38 Z" fill="url(#headerGrad2)"/>
+    <text x="130" y="24" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">product_reviews</text>
+    <text x="15" y="60" fill="#38bdf8" font-size="12" font-weight="bold">PK  review_id</text><text x="160" y="60" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="85" fill="#a7f3d0" font-size="12" font-weight="bold">FK  product_id</text><text x="160" y="85" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="110" fill="#a7f3d0" font-size="12" font-weight="bold">FK  customer_id</text><text x="160" y="110" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="135" fill="#f1f5f9" font-size="12">      rating</text><text x="160" y="135" fill="#94a3b8" font-size="12">smallint (1-5)</text>
+    <text x="15" y="160" fill="#f1f5f9" font-size="12">      verified_purchase</text><text x="160" y="160" fill="#94a3b8" font-size="12">boolean</text>
+    <text x="15" y="185" fill="#f1f5f9" font-size="12">      helpful_votes</text><text x="160" y="185" fill="#94a3b8" font-size="12">int</text>
+    <text x="15" y="210" fill="#f1f5f9" font-size="12">      created_at</text><text x="160" y="210" fill="#94a3b8" font-size="12">timestamptz</text>
+  </g>
+
+  <!-- Connectors / Relationships -->
+  <g stroke="#64748b" stroke-width="1.8" fill="none">
+    <!-- cities to customers -->
+    <path d="M 270 170 L 340 170" marker-end="url(#arrow)"/>
+    <!-- cities to addresses -->
+    <path d="M 160 250 L 160 370 L 780 370 L 780 330" />
+    <!-- customers to addresses -->
+    <path d="M 590 180 L 660 180" />
+    <!-- customers to cart_items -->
+    <path d="M 400 350 L 400 420 L 220 420 L 220 470" />
+    <!-- customers to orders -->
+    <path d="M 500 350 L 500 450" />
+    <!-- addresses to orders -->
+    <path d="M 720 330 L 720 450" />
+    <!-- orders to order_items -->
+    <path d="M 610 710 L 610 810" />
+    <!-- order_items to returns -->
+    <path d="M 480 910 L 350 910" />
+    <!-- products to order_items -->
+    <path d="M 1080 650 L 800 650 L 800 890 L 740 890" />
+    <!-- products to cart_items -->
+    <path d="M 1080 520 L 340 520" stroke-dasharray="4,4"/>
+    <!-- categories to products -->
+    <path d="M 1120 270 L 1120 440" />
+    <!-- sellers to products -->
+    <path d="M 1380 330 L 1380 440 L 1300 440" />
+    <!-- products to product_reviews -->
+    <path d="M 1210 720 L 1210 810" />
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(100, 1080)">
+    <rect width="1400" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <text x="30" y="42" fill="#94a3b8" font-size="14" font-weight="bold">LEGEND:</text>
+    <rect x="130" y="27" width="16" height="16" rx="3" fill="#38bdf8"/>
+    <text x="155" y="40" fill="#e2e8f0" font-size="13">Primary Key (PK)</text>
+
+    <rect x="330" y="27" width="16" height="16" rx="3" fill="#a7f3d0"/>
+    <text x="355" y="40" fill="#e2e8f0" font-size="13">Foreign Key (FK)</text>
+
+    <rect x="530" y="27" width="16" height="16" rx="3" fill="#e879f9"/>
+    <text x="555" y="40" fill="#e2e8f0" font-size="13">Composite PK / FK</text>
+
+    <line x1="750" y1="35" x2="800" y2="35" stroke="#64748b" stroke-width="2"/>
+    <text x="815" y="40" fill="#e2e8f0" font-size="13">1-to-Many Relationship</text>
+
+    <line x1="1020" y1="35" x2="1070" y2="35" stroke="#64748b" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="1085" y="40" fill="#e2e8f0" font-size="13">Many-to-Many Reference</text>
+  </g>
+
+</svg>
