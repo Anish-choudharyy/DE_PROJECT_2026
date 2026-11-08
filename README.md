@@ -22,12 +22,12 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Harsh Raja | 2501010177 | Harsh-07-Raja |
+| Member 2 | Anish Choudhary | 2501010569 | Anish-choudharyy |
+| Member 3 | Aksh Rathi | 2501010044 | Aksh-Rathi |
+| Member 4 | Sikunj Yadav | 2501010570 | Sikunj-Yadav |
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** T0063 · **Section:** C · **Repository URL:** https://github.com/Anish-choudharyy/DE_PROJECT_2026
 
 ---
 

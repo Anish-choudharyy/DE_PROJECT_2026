@@ -1,0 +1,27 @@
+{
+  "team_number": "T0063",
+  "group_lead": {
+    "name": "Harsh Raja",
+    "enrollment_no": "2501010177",
+    "github": "Harsh-07-Raja"
+  },
+  "members": [
+    {
+      "name": "Anish Choudhary",
+      "enrollment_no": "2501010569",
+      "github": "Anish-choudharyy"
+    },
+    {
+      "name": "Aksh Rathi",
+      "enrollment_no": "2501010044",
+      "github": "Aksh-Rathi"
+    },
+    {
+      "name": "Sikunj Yadav",
+      "enrollment_no": "2501010570",
+      "github": "Sikunj-Yadav"
+    }
+  ],
+  "postgres_version": "16",
+  "laptop_used_for_benchmarks": "Apple Silicon Mac"
+}
