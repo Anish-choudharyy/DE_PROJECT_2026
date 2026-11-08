@@ -24,8 +24,8 @@
 |------|------|----------------|-----------------|
 | Group Lead | Harsh Raja | 2501010177 | Harsh-07-Raja |
 | Member 2 | Anish Choudhary | 2501010569 | Anish-choudharyy |
-| Member 3 | Aksh Rathi | 2501010044 | Aksh-Rathi |
-| Member 4 | Sikunj Yadav | 2501010570 | Sikunj-Yadav |
+| Member 3 | Aksh Rathi | 2501010044 | aksh2801 |
+| Member 4 | Sikunj Yadav | 2501010570 | CodewithSikunj |
 
 **Team No.:** T0063 · **Section:** C · **Repository URL:** https://github.com/Anish-choudharyy/DE_PROJECT_2026
 
