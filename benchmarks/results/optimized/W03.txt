@@ -1,0 +1,63 @@
+=== W03 run 1 ===
+Update on products p  (cost=1.80..10.21 rows=0 width=0) (actual time=0.537..0.537 rows=0.00 loops=1)
+  Buffers: shared hit=64 dirtied=1
+  ->  Hash Join  (cost=1.80..10.21 rows=1 width=28) (actual time=0.020..0.025 rows=1.00 loops=1)
+        Hash Cond: (p.category_id = c.category_id)
+        Buffers: shared hit=6
+        ->  Index Scan using idx_products_seller_id on products p  (cost=0.29..8.64 rows=20 width=15) (actual time=0.009..0.013 rows=20.00 loops=1)
+              Index Cond: (seller_id = 217)
+              Index Searches: 1
+              Buffers: shared hit=5
+        ->  Hash  (cost=1.50..1.50 rows=1 width=10) (actual time=0.006..0.006 rows=1.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=1
+              ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=10) (actual time=0.003..0.004 rows=1.00 loops=1)
+                    Filter: (category_name = 'Watches'::text)
+                    Rows Removed by Filter: 39
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=344
+Planning Time: 0.621 ms
+Execution Time: 0.590 ms
+=== W03 run 2 ===
+Update on products p  (cost=1.80..10.21 rows=0 width=0) (actual time=0.610..0.610 rows=0.00 loops=1)
+  Buffers: shared hit=65
+  ->  Hash Join  (cost=1.80..10.21 rows=1 width=28) (actual time=0.023..0.029 rows=1.00 loops=1)
+        Hash Cond: (p.category_id = c.category_id)
+        Buffers: shared hit=6
+        ->  Index Scan using idx_products_seller_id on products p  (cost=0.29..8.64 rows=20 width=15) (actual time=0.010..0.015 rows=20.00 loops=1)
+              Index Cond: (seller_id = 217)
+              Index Searches: 1
+              Buffers: shared hit=5
+        ->  Hash  (cost=1.50..1.50 rows=1 width=10) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=1
+              ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=10) (actual time=0.003..0.004 rows=1.00 loops=1)
+                    Filter: (category_name = 'Watches'::text)
+                    Rows Removed by Filter: 39
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=344
+Planning Time: 0.670 ms
+Execution Time: 0.662 ms
+=== W03 run 3 ===
+Update on products p  (cost=1.80..10.21 rows=0 width=0) (actual time=0.495..0.496 rows=0.00 loops=1)
+  Buffers: shared hit=65
+  ->  Hash Join  (cost=1.80..10.21 rows=1 width=28) (actual time=0.019..0.024 rows=1.00 loops=1)
+        Hash Cond: (p.category_id = c.category_id)
+        Buffers: shared hit=6
+        ->  Index Scan using idx_products_seller_id on products p  (cost=0.29..8.64 rows=20 width=15) (actual time=0.008..0.013 rows=20.00 loops=1)
+              Index Cond: (seller_id = 217)
+              Index Searches: 1
+              Buffers: shared hit=5
+        ->  Hash  (cost=1.50..1.50 rows=1 width=10) (actual time=0.005..0.005 rows=1.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=1
+              ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=10) (actual time=0.003..0.003 rows=1.00 loops=1)
+                    Filter: (category_name = 'Watches'::text)
+                    Rows Removed by Filter: 39
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=344
+Planning Time: 0.511 ms
+Execution Time: 0.539 ms

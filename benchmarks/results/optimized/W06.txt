@@ -1,0 +1,33 @@
+=== W06 run 1 ===
+Delete on cart_items  (cost=0.29..8.31 rows=0 width=0) (actual time=0.002..0.002 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using idx_cart_items_added_at on cart_items  (cost=0.29..8.31 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+        Index Cond: (added_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '90 days'::interval))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.249 ms
+Execution Time: 0.041 ms
+=== W06 run 2 ===
+Delete on cart_items  (cost=0.29..8.31 rows=0 width=0) (actual time=0.002..0.002 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using idx_cart_items_added_at on cart_items  (cost=0.29..8.31 rows=1 width=6) (actual time=0.002..0.002 rows=0.00 loops=1)
+        Index Cond: (added_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '90 days'::interval))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.252 ms
+Execution Time: 0.042 ms
+=== W06 run 3 ===
+Delete on cart_items  (cost=0.29..8.31 rows=0 width=0) (actual time=0.002..0.002 rows=0.00 loops=1)
+  Buffers: shared hit=2
+  ->  Index Scan using idx_cart_items_added_at on cart_items  (cost=0.29..8.31 rows=1 width=6) (actual time=0.002..0.002 rows=0.00 loops=1)
+        Index Cond: (added_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '90 days'::interval))
+        Index Searches: 1
+        Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=98
+Planning Time: 0.265 ms
+Execution Time: 0.046 ms

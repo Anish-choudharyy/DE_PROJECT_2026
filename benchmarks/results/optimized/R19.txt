@@ -1,0 +1,117 @@
+=== R19 run 1 ===
+Sort  (cost=3753.26..3768.27 rows=6003 width=46) (actual time=12.040..12.056 rows=937.00 loops=1)
+  Sort Key: (COALESCE(sum(oi.quantity), '0'::bigint)) DESC, p.product_id
+  Sort Method: quicksort  Memory: 86kB
+  Buffers: shared hit=33990
+  ->  HashAggregate  (cost=3316.50..3376.53 rows=6003 width=46) (actual time=11.849..11.911 rows=937.00 loops=1)
+        Group Key: p.product_id
+        Batches: 1  Memory Usage: 281kB
+        Buffers: shared hit=33984
+        ->  Nested Loop Left Join  (cost=12.28..3271.47 rows=6003 width=40) (actual time=0.087..11.310 rows=7710.00 loops=1)
+              Buffers: shared hit=33984
+              ->  Nested Loop Left Join  (cost=11.98..1238.26 rows=6003 width=36) (actual time=0.081..4.649 rows=7710.00 loops=1)
+                    Buffers: shared hit=10974
+                    ->  Nested Loop  (cost=11.56..511.67 rows=752 width=30) (actual time=0.076..0.472 rows=937.00 loops=1)
+                          Buffers: shared hit=478
+                          ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=4) (actual time=0.004..0.007 rows=1.00 loops=1)
+                                Filter: (category_name = 'Mobiles'::text)
+                                Rows Removed by Filter: 39
+                                Buffers: shared hit=1
+                          ->  Bitmap Heap Scan on products p  (cost=11.56..500.78 rows=939 width=34) (actual time=0.071..0.415 rows=937.00 loops=1)
+                                Recheck Cond: (c.category_id = category_id)
+                                Heap Blocks: exact=475
+                                Buffers: shared hit=477
+                                ->  Bitmap Index Scan on idx_products_category_id  (cost=0.00..11.33 rows=939 width=0) (actual time=0.036..0.036 rows=937.00 loops=1)
+                                      Index Cond: (category_id = c.category_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                    ->  Index Scan using idx_order_items_product_order on order_items oi  (cost=0.42..0.88 rows=9 width=10) (actual time=0.002..0.004 rows=8.19 loops=937)
+                          Index Cond: (product_id = p.product_id)
+                          Index Searches: 937
+                          Buffers: shared hit=10496
+              ->  Index Scan using orders_pkey on orders o  (cost=0.29..0.34 rows=1 width=12) (actual time=0.001..0.001 rows=0.99 loops=7710)
+                    Index Cond: (order_id = oi.order_id)
+                    Index Searches: 7670
+                    Buffers: shared hit=23010
+Planning:
+  Buffers: shared hit=540
+Planning Time: 1.081 ms
+Execution Time: 12.126 ms
+=== R19 run 2 ===
+Sort  (cost=3753.26..3768.27 rows=6003 width=46) (actual time=11.822..11.839 rows=937.00 loops=1)
+  Sort Key: (COALESCE(sum(oi.quantity), '0'::bigint)) DESC, p.product_id
+  Sort Method: quicksort  Memory: 86kB
+  Buffers: shared hit=33990
+  ->  HashAggregate  (cost=3316.50..3376.53 rows=6003 width=46) (actual time=11.637..11.695 rows=937.00 loops=1)
+        Group Key: p.product_id
+        Batches: 1  Memory Usage: 281kB
+        Buffers: shared hit=33984
+        ->  Nested Loop Left Join  (cost=12.28..3271.47 rows=6003 width=40) (actual time=0.071..11.107 rows=7710.00 loops=1)
+              Buffers: shared hit=33984
+              ->  Nested Loop Left Join  (cost=11.98..1238.26 rows=6003 width=36) (actual time=0.065..4.520 rows=7710.00 loops=1)
+                    Buffers: shared hit=10974
+                    ->  Nested Loop  (cost=11.56..511.67 rows=752 width=30) (actual time=0.061..0.456 rows=937.00 loops=1)
+                          Buffers: shared hit=478
+                          ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=4) (actual time=0.004..0.007 rows=1.00 loops=1)
+                                Filter: (category_name = 'Mobiles'::text)
+                                Rows Removed by Filter: 39
+                                Buffers: shared hit=1
+                          ->  Bitmap Heap Scan on products p  (cost=11.56..500.78 rows=939 width=34) (actual time=0.057..0.400 rows=937.00 loops=1)
+                                Recheck Cond: (c.category_id = category_id)
+                                Heap Blocks: exact=475
+                                Buffers: shared hit=477
+                                ->  Bitmap Index Scan on idx_products_category_id  (cost=0.00..11.33 rows=939 width=0) (actual time=0.032..0.032 rows=937.00 loops=1)
+                                      Index Cond: (category_id = c.category_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                    ->  Index Scan using idx_order_items_product_order on order_items oi  (cost=0.42..0.88 rows=9 width=10) (actual time=0.002..0.004 rows=8.19 loops=937)
+                          Index Cond: (product_id = p.product_id)
+                          Index Searches: 937
+                          Buffers: shared hit=10496
+              ->  Index Scan using orders_pkey on orders o  (cost=0.29..0.34 rows=1 width=12) (actual time=0.001..0.001 rows=0.99 loops=7710)
+                    Index Cond: (order_id = oi.order_id)
+                    Index Searches: 7670
+                    Buffers: shared hit=23010
+Planning:
+  Buffers: shared hit=540
+Planning Time: 1.030 ms
+Execution Time: 11.903 ms
+=== R19 run 3 ===
+Sort  (cost=3753.26..3768.27 rows=6003 width=46) (actual time=11.523..11.539 rows=937.00 loops=1)
+  Sort Key: (COALESCE(sum(oi.quantity), '0'::bigint)) DESC, p.product_id
+  Sort Method: quicksort  Memory: 86kB
+  Buffers: shared hit=33990
+  ->  HashAggregate  (cost=3316.50..3376.53 rows=6003 width=46) (actual time=11.340..11.398 rows=937.00 loops=1)
+        Group Key: p.product_id
+        Batches: 1  Memory Usage: 281kB
+        Buffers: shared hit=33984
+        ->  Nested Loop Left Join  (cost=12.28..3271.47 rows=6003 width=40) (actual time=0.069..10.811 rows=7710.00 loops=1)
+              Buffers: shared hit=33984
+              ->  Nested Loop Left Join  (cost=11.98..1238.26 rows=6003 width=36) (actual time=0.064..4.433 rows=7710.00 loops=1)
+                    Buffers: shared hit=10974
+                    ->  Nested Loop  (cost=11.56..511.67 rows=752 width=30) (actual time=0.060..0.438 rows=937.00 loops=1)
+                          Buffers: shared hit=478
+                          ->  Seq Scan on categories c  (cost=0.00..1.50 rows=1 width=4) (actual time=0.003..0.005 rows=1.00 loops=1)
+                                Filter: (category_name = 'Mobiles'::text)
+                                Rows Removed by Filter: 39
+                                Buffers: shared hit=1
+                          ->  Bitmap Heap Scan on products p  (cost=11.56..500.78 rows=939 width=34) (actual time=0.056..0.385 rows=937.00 loops=1)
+                                Recheck Cond: (c.category_id = category_id)
+                                Heap Blocks: exact=475
+                                Buffers: shared hit=477
+                                ->  Bitmap Index Scan on idx_products_category_id  (cost=0.00..11.33 rows=939 width=0) (actual time=0.032..0.032 rows=937.00 loops=1)
+                                      Index Cond: (category_id = c.category_id)
+                                      Index Searches: 1
+                                      Buffers: shared hit=2
+                    ->  Index Scan using idx_order_items_product_order on order_items oi  (cost=0.42..0.88 rows=9 width=10) (actual time=0.002..0.004 rows=8.19 loops=937)
+                          Index Cond: (product_id = p.product_id)
+                          Index Searches: 937
+                          Buffers: shared hit=10496
+              ->  Index Scan using orders_pkey on orders o  (cost=0.29..0.34 rows=1 width=12) (actual time=0.001..0.001 rows=0.99 loops=7710)
+                    Index Cond: (order_id = oi.order_id)
+                    Index Searches: 7670
+                    Buffers: shared hit=23010
+Planning:
+  Buffers: shared hit=540
+Planning Time: 0.958 ms
+Execution Time: 11.594 ms

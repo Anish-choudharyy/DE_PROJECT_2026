@@ -1,0 +1,72 @@
+=== R09 run 1 ===
+GroupAggregate  (cost=5636.21..6747.80 rows=37053 width=49) (actual time=11.438..13.480 rows=12.00 loops=1)
+  Group Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+  Buffers: shared hit=939
+  ->  Sort  (cost=5636.21..5728.84 rows=37053 width=14) (actual time=11.094..11.750 rows=37166.00 loops=1)
+        Sort Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+        Sort Method: quicksort  Memory: 2698kB
+        Buffers: shared hit=939
+        ->  Hash Join  (cost=1048.42..2824.39 rows=37053 width=14) (actual time=2.731..9.212 rows=37166.00 loops=1)
+              Hash Cond: (o.customer_id = c.customer_id)
+              Buffers: shared hit=931
+              ->  Index Scan using idx_orders_ordered_at_active on orders o  (cost=0.42..1586.48 rows=37053 width=17) (actual time=0.010..1.858 rows=37166.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=558
+              ->  Hash  (cost=673.00..673.00 rows=30000 width=5) (actual time=2.698..2.698 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=373
+                    ->  Seq Scan on customers c  (cost=0.00..673.00 rows=30000 width=5) (actual time=0.004..1.573 rows=30000.00 loops=1)
+                          Buffers: shared hit=373
+Planning:
+  Buffers: shared hit=406
+Planning Time: 0.662 ms
+Execution Time: 13.511 ms
+=== R09 run 2 ===
+GroupAggregate  (cost=5636.21..6747.80 rows=37053 width=49) (actual time=11.285..13.243 rows=12.00 loops=1)
+  Group Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+  Buffers: shared hit=939
+  ->  Sort  (cost=5636.21..5728.84 rows=37053 width=14) (actual time=11.009..11.639 rows=37166.00 loops=1)
+        Sort Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+        Sort Method: quicksort  Memory: 2698kB
+        Buffers: shared hit=939
+        ->  Hash Join  (cost=1048.42..2824.39 rows=37053 width=14) (actual time=2.712..9.142 rows=37166.00 loops=1)
+              Hash Cond: (o.customer_id = c.customer_id)
+              Buffers: shared hit=931
+              ->  Index Scan using idx_orders_ordered_at_active on orders o  (cost=0.42..1586.48 rows=37053 width=17) (actual time=0.010..1.861 rows=37166.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=558
+              ->  Hash  (cost=673.00..673.00 rows=30000 width=5) (actual time=2.669..2.669 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=373
+                    ->  Seq Scan on customers c  (cost=0.00..673.00 rows=30000 width=5) (actual time=0.004..1.527 rows=30000.00 loops=1)
+                          Buffers: shared hit=373
+Planning:
+  Buffers: shared hit=406
+Planning Time: 0.582 ms
+Execution Time: 13.272 ms
+=== R09 run 3 ===
+GroupAggregate  (cost=5636.21..6747.80 rows=37053 width=49) (actual time=11.213..13.175 rows=12.00 loops=1)
+  Group Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+  Buffers: shared hit=939
+  ->  Sort  (cost=5636.21..5728.84 rows=37053 width=14) (actual time=10.931..11.552 rows=37166.00 loops=1)
+        Sort Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+        Sort Method: quicksort  Memory: 2698kB
+        Buffers: shared hit=939
+        ->  Hash Join  (cost=1048.42..2824.39 rows=37053 width=14) (actual time=2.627..9.053 rows=37166.00 loops=1)
+              Hash Cond: (o.customer_id = c.customer_id)
+              Buffers: shared hit=931
+              ->  Index Scan using idx_orders_ordered_at_active on orders o  (cost=0.42..1586.48 rows=37053 width=17) (actual time=0.020..1.882 rows=37166.00 loops=1)
+                    Index Cond: ((ordered_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (ordered_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                    Index Searches: 1
+                    Buffers: shared hit=558
+              ->  Hash  (cost=673.00..673.00 rows=30000 width=5) (actual time=2.568..2.568 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=373
+                    ->  Seq Scan on customers c  (cost=0.00..673.00 rows=30000 width=5) (actual time=0.005..1.455 rows=30000.00 loops=1)
+                          Buffers: shared hit=373
+Planning:
+  Buffers: shared hit=406
+Planning Time: 0.625 ms
+Execution Time: 13.206 ms

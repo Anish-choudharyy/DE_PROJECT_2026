@@ -1,0 +1,144 @@
+=== R15 run 1 ===
+Limit  (cost=7063.68..7063.73 rows=20 width=62) (actual time=22.197..22.307 rows=20.00 loops=1)
+  Buffers: shared hit=2234
+  ->  Sort  (cost=7063.68..7064.93 rows=500 width=62) (actual time=22.196..22.306 rows=20.00 loops=1)
+        Sort Key: (sum(((oi.quantity)::numeric * oi.unit_price))) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=2234
+        ->  Finalize HashAggregate  (cost=7027.87..7050.37 rows=500 width=62) (actual time=22.010..22.240 rows=658.00 loops=1)
+              Group Key: s.seller_id
+              Filter: (count(*) >= 50)
+              Batches: 1  Memory Usage: 689kB
+              Rows Removed by Filter: 842
+              Buffers: shared hit=2231
+              ->  Gather  (cost=6728.62..7002.37 rows=2550 width=62) (actual time=21.235..21.598 rows=3000.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=2231
+                    ->  Partial HashAggregate  (cost=5728.62..5747.37 rows=1500 width=62) (actual time=19.871..20.024 rows=1500.00 loops=2)
+                          Group Key: s.seller_id
+                          Batches: 1  Memory Usage: 689kB
+                          Buffers: shared hit=2231
+                          Worker 0:  Batches: 1  Memory Usage: 689kB
+                          ->  Hash Join  (cost=1734.17..5209.80 rows=41506 width=29) (actual time=7.888..15.055 rows=35310.50 loops=2)
+                                Hash Cond: (oi.seller_id = s.seller_id)
+                                Buffers: shared hit=2231
+                                ->  Parallel Hash Join  (cost=1682.42..5048.78 rows=41506 width=11) (actual time=7.719..12.115 rows=35310.50 loops=2)
+                                      Hash Cond: (oi.order_id = o.order_id)
+                                      Buffers: shared hit=2195
+                                      ->  Parallel Seq Scan on order_items oi  (cost=0.00..2995.76 rows=141176 width=15) (actual time=0.003..3.084 rows=120000.00 loops=2)
+                                            Buffers: shared hit=1584
+                                      ->  Parallel Hash  (cost=1423.01..1423.01 rows=20753 width=4) (actual time=2.677..2.677 rows=17661.50 loops=2)
+                                            Buckets: 65536  Batches: 1  Memory Usage: 1920kB
+                                            Buffers: shared hit=611
+                                            ->  Parallel Index Scan using idx_orders_ordered_at_active on orders o  (cost=0.42..1423.01 rows=20753 width=4) (actual time=0.012..1.747 rows=17661.50 loops=2)
+                                                  Index Cond: (ordered_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                                                  Filter: (status = ANY ('{DELIVERED,SHIPPED,OUT_FOR_DELIVERY}'::text[]))
+                                                  Rows Removed by Filter: 922
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=611
+                                ->  Hash  (cost=33.00..33.00 rows=1500 width=22) (actual time=0.164..0.164 rows=1500.00 loops=2)
+                                      Buckets: 2048  Batches: 1  Memory Usage: 97kB
+                                      Buffers: shared hit=36
+                                      ->  Seq Scan on sellers s  (cost=0.00..33.00 rows=1500 width=22) (actual time=0.012..0.075 rows=1500.00 loops=2)
+                                            Buffers: shared hit=36
+Planning:
+  Buffers: shared hit=419
+Planning Time: 0.883 ms
+Execution Time: 22.363 ms
+=== R15 run 2 ===
+Limit  (cost=7063.68..7063.73 rows=20 width=62) (actual time=21.118..21.219 rows=20.00 loops=1)
+  Buffers: shared hit=2242
+  ->  Sort  (cost=7063.68..7064.93 rows=500 width=62) (actual time=21.118..21.217 rows=20.00 loops=1)
+        Sort Key: (sum(((oi.quantity)::numeric * oi.unit_price))) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=2242
+        ->  Finalize HashAggregate  (cost=7027.87..7050.37 rows=500 width=62) (actual time=20.935..21.154 rows=658.00 loops=1)
+              Group Key: s.seller_id
+              Filter: (count(*) >= 50)
+              Batches: 1  Memory Usage: 689kB
+              Rows Removed by Filter: 842
+              Buffers: shared hit=2239
+              ->  Gather  (cost=6728.62..7002.37 rows=2550 width=62) (actual time=20.110..20.465 rows=3000.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=2239
+                    ->  Partial HashAggregate  (cost=5728.62..5747.37 rows=1500 width=62) (actual time=19.111..19.264 rows=1500.00 loops=2)
+                          Group Key: s.seller_id
+                          Batches: 1  Memory Usage: 689kB
+                          Buffers: shared hit=2239
+                          Worker 0:  Batches: 1  Memory Usage: 689kB
+                          ->  Hash Join  (cost=1734.17..5209.80 rows=41506 width=29) (actual time=7.303..14.451 rows=35310.50 loops=2)
+                                Hash Cond: (oi.seller_id = s.seller_id)
+                                Buffers: shared hit=2239
+                                ->  Parallel Hash Join  (cost=1682.42..5048.78 rows=41506 width=11) (actual time=7.166..11.539 rows=35310.50 loops=2)
+                                      Hash Cond: (oi.order_id = o.order_id)
+                                      Buffers: shared hit=2203
+                                      ->  Parallel Seq Scan on order_items oi  (cost=0.00..2995.76 rows=141176 width=15) (actual time=0.003..3.058 rows=120000.00 loops=2)
+                                            Buffers: shared hit=1584
+                                      ->  Parallel Hash  (cost=1423.01..1423.01 rows=20753 width=4) (actual time=2.247..2.248 rows=17661.50 loops=2)
+                                            Buckets: 65536  Batches: 1  Memory Usage: 1920kB
+                                            Buffers: shared hit=619
+                                            ->  Parallel Index Scan using idx_orders_ordered_at_active on orders o  (cost=0.42..1423.01 rows=20753 width=4) (actual time=0.011..1.524 rows=17661.50 loops=2)
+                                                  Index Cond: (ordered_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                                                  Filter: (status = ANY ('{DELIVERED,SHIPPED,OUT_FOR_DELIVERY}'::text[]))
+                                                  Rows Removed by Filter: 922
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=619
+                                ->  Hash  (cost=33.00..33.00 rows=1500 width=22) (actual time=0.134..0.134 rows=1500.00 loops=2)
+                                      Buckets: 2048  Batches: 1  Memory Usage: 97kB
+                                      Buffers: shared hit=36
+                                      ->  Seq Scan on sellers s  (cost=0.00..33.00 rows=1500 width=22) (actual time=0.010..0.065 rows=1500.00 loops=2)
+                                            Buffers: shared hit=36
+Planning:
+  Buffers: shared hit=419
+Planning Time: 0.779 ms
+Execution Time: 21.267 ms
+=== R15 run 3 ===
+Limit  (cost=7063.68..7063.73 rows=20 width=62) (actual time=21.174..21.219 rows=20.00 loops=1)
+  Buffers: shared hit=2242
+  ->  Sort  (cost=7063.68..7064.93 rows=500 width=62) (actual time=21.173..21.218 rows=20.00 loops=1)
+        Sort Key: (sum(((oi.quantity)::numeric * oi.unit_price))) DESC
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=2242
+        ->  Finalize HashAggregate  (cost=7027.87..7050.37 rows=500 width=62) (actual time=20.945..21.144 rows=658.00 loops=1)
+              Group Key: s.seller_id
+              Filter: (count(*) >= 50)
+              Batches: 1  Memory Usage: 689kB
+              Rows Removed by Filter: 842
+              Buffers: shared hit=2239
+              ->  Gather  (cost=6728.62..7002.37 rows=2550 width=62) (actual time=19.781..20.160 rows=3000.00 loops=1)
+                    Workers Planned: 1
+                    Workers Launched: 1
+                    Buffers: shared hit=2239
+                    ->  Partial HashAggregate  (cost=5728.62..5747.37 rows=1500 width=62) (actual time=18.801..18.980 rows=1500.00 loops=2)
+                          Group Key: s.seller_id
+                          Batches: 1  Memory Usage: 689kB
+                          Buffers: shared hit=2239
+                          Worker 0:  Batches: 1  Memory Usage: 689kB
+                          ->  Hash Join  (cost=1734.17..5209.80 rows=41506 width=29) (actual time=7.087..14.000 rows=35310.50 loops=2)
+                                Hash Cond: (oi.seller_id = s.seller_id)
+                                Buffers: shared hit=2239
+                                ->  Parallel Hash Join  (cost=1682.42..5048.78 rows=41506 width=11) (actual time=6.943..11.122 rows=35310.50 loops=2)
+                                      Hash Cond: (oi.order_id = o.order_id)
+                                      Buffers: shared hit=2203
+                                      ->  Parallel Seq Scan on order_items oi  (cost=0.00..2995.76 rows=141176 width=15) (actual time=0.002..2.975 rows=120000.00 loops=2)
+                                            Buffers: shared hit=1584
+                                      ->  Parallel Hash  (cost=1423.01..1423.01 rows=20753 width=4) (actual time=2.193..2.193 rows=17661.50 loops=2)
+                                            Buckets: 65536  Batches: 1  Memory Usage: 1920kB
+                                            Buffers: shared hit=619
+                                            ->  Parallel Index Scan using idx_orders_ordered_at_active on orders o  (cost=0.42..1423.01 rows=20753 width=4) (actual time=0.011..1.512 rows=17661.50 loops=2)
+                                                  Index Cond: (ordered_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                                                  Filter: (status = ANY ('{DELIVERED,SHIPPED,OUT_FOR_DELIVERY}'::text[]))
+                                                  Rows Removed by Filter: 922
+                                                  Index Searches: 1
+                                                  Buffers: shared hit=619
+                                ->  Hash  (cost=33.00..33.00 rows=1500 width=22) (actual time=0.133..0.134 rows=1500.00 loops=2)
+                                      Buckets: 2048  Batches: 1  Memory Usage: 97kB
+                                      Buffers: shared hit=36
+                                      ->  Seq Scan on sellers s  (cost=0.00..33.00 rows=1500 width=22) (actual time=0.010..0.066 rows=1500.00 loops=2)
+                                            Buffers: shared hit=36
+Planning:
+  Buffers: shared hit=419
+Planning Time: 0.738 ms
+Execution Time: 21.268 ms

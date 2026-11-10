@@ -1,0 +1,30 @@
+=== R14 run 1 ===
+Limit  (cost=0.28..12.27 rows=50 width=104) (actual time=0.013..0.082 rows=50.00 loops=1)
+  Buffers: shared hit=52
+  ->  Index Scan using idx_products_discount_pct on products  (cost=0.28..2168.12 rows=9039 width=104) (actual time=0.012..0.080 rows=50.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=52
+Planning:
+  Buffers: shared hit=300
+Planning Time: 0.470 ms
+Execution Time: 0.094 ms
+=== R14 run 2 ===
+Limit  (cost=0.28..12.27 rows=50 width=104) (actual time=0.012..0.077 rows=50.00 loops=1)
+  Buffers: shared hit=52
+  ->  Index Scan using idx_products_discount_pct on products  (cost=0.28..2168.12 rows=9039 width=104) (actual time=0.011..0.074 rows=50.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=52
+Planning:
+  Buffers: shared hit=300
+Planning Time: 0.456 ms
+Execution Time: 0.088 ms
+=== R14 run 3 ===
+Limit  (cost=0.28..12.27 rows=50 width=104) (actual time=0.011..0.077 rows=50.00 loops=1)
+  Buffers: shared hit=52
+  ->  Index Scan using idx_products_discount_pct on products  (cost=0.28..2168.12 rows=9039 width=104) (actual time=0.011..0.075 rows=50.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=52
+Planning:
+  Buffers: shared hit=300
+Planning Time: 0.492 ms
+Execution Time: 0.088 ms
