@@ -82,7 +82,7 @@ returns ← order_items (order_id + line_no)
 | `city_id` | `INTEGER` | FK → cities NOT NULL | Registered city |
 | `joined_on` | `DATE` | NOT NULL | |
 | `seller_rating` | `NUMERIC(3,2)` | CHECK (seller_rating BETWEEN 0 AND 5) | Avg rating 0–5 |
-| `status` | `TEXT` | NOT NULL, CHECK (status IN ('ACTIVE','INACTIVE')) | Account state |
+| `status` | `TEXT` | NOT NULL, CHECK (status IN ('ACTIVE','INACTIVE','CLOSED','SUSPENDED')) | Account state |
 
 **Primary key:** `seller_id`  
 **Rows:** 1,500
@@ -122,7 +122,7 @@ marks a root node.
 | `avg_rating` | `NUMERIC(3,2)` | CHECK (avg_rating BETWEEN 0 AND 5) | **Denormalized** (see §3) |
 | `review_count` | `INTEGER` | NOT NULL, DEFAULT 0 | **Denormalized** (see §3) |
 | `listed_on` | `DATE` | NOT NULL | Date first listed |
-| `status` | `TEXT` | NOT NULL, CHECK (status IN ('ACTIVE','INACTIVE','DELETED')) | Listing state |
+| `status` | `TEXT` | NOT NULL, CHECK (status IN ('ACTIVE','INACTIVE','OUT_OF_STOCK','DELETED')) | Listing state |
 
 **Primary key:** `product_id`  
 **Rows:** 30,000
@@ -137,7 +137,7 @@ marks a root node.
 | `customer_id` | `INTEGER` | FK → customers NOT NULL | Buyer |
 | `address_id` | `INTEGER` | FK → addresses | Nullable for digital-only orders |
 | `ordered_at` | `TIMESTAMPTZ` | NOT NULL | Checkout timestamp |
-| `payment_method` | `TEXT` | NOT NULL, CHECK (payment_method IN ('CARD','UPI','GIFT_CARD','COD','NET_BANKING','WALLET')) | |
+| `payment_method` | `TEXT` | NOT NULL, CHECK (payment_method IN ('CARD','UPI','GIFT_CARD','COD','NETBANKING','NET_BANKING','WALLET','EMI')) | |
 | `total_amount` | `NUMERIC(12,2)` | NOT NULL, CHECK (total_amount >= 0) | Order total |
 | `status` | `TEXT` | NOT NULL, CHECK (status IN ('PLACED','PACKED','SHIPPED','OUT_FOR_DELIVERY','DELIVERED','CANCELLED','RETURNED')) | Lifecycle status |
 | `shipped_at` | `TIMESTAMPTZ` | | NULL until shipped |
@@ -208,9 +208,9 @@ adding a duplicate is an ON CONFLICT DO UPDATE. This prevents duplicate rows.
 | `return_id` | `INTEGER` | PK | Surrogate key |
 | `order_id` | `INTEGER` | FK part of composite → order_items | |
 | `line_no` | `SMALLINT` | FK part of composite → order_items | |
-| `reason` | `TEXT` | NOT NULL, CHECK (reason IN ('QUALITY_ISSUE','WRONG_ITEM','NOT_AS_DESCRIBED','CHANGED_MIND','DAMAGED')) | |
+| `reason` | `TEXT` | NOT NULL, CHECK (reason IN ('QUALITY_ISSUE','WRONG_ITEM','NOT_AS_DESCRIBED','CHANGED_MIND','DAMAGED','NO_LONGER_NEEDED','SIZE_ISSUE')) | |
 | `requested_at` | `TIMESTAMPTZ` | NOT NULL | |
-| `status` | `TEXT` | NOT NULL, CHECK (status IN ('REQUESTED','APPROVED','REJECTED','REFUNDED')) | Approval lifecycle |
+| `status` | `TEXT` | NOT NULL, CHECK (status IN ('REQUESTED','APPROVED','REJECTED','REFUNDED','PICKED_UP')) | Approval lifecycle |
 | `refund_amount` | `NUMERIC(12,2)` | CHECK (refund_amount >= 0) | NULL until refund issued |
 
 **Primary key:** `return_id`  

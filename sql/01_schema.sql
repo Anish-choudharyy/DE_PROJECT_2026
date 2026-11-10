@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS sellers (
     joined_on     DATE           NOT NULL,
     seller_rating NUMERIC(3,2)   CHECK (seller_rating BETWEEN 0 AND 5),
     status        TEXT           NOT NULL
-                                 CHECK (status IN ('ACTIVE', 'INACTIVE'))
+                                 CHECK (status IN ('ACTIVE', 'INACTIVE', 'CLOSED', 'SUSPENDED'))
 );
 
 COMMENT ON TABLE  sellers             IS 'Marketplace seller accounts.';
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS products (
     review_count      INTEGER         NOT NULL DEFAULT 0,                   -- denormalized
     listed_on         DATE            NOT NULL,
     status            TEXT            NOT NULL
-                                      CHECK (status IN ('ACTIVE', 'INACTIVE', 'DELETED'))
+                                      CHECK (status IN ('ACTIVE', 'INACTIVE', 'OUT_OF_STOCK', 'DELETED'))
 );
 
 COMMENT ON TABLE  products                 IS 'Product listings by sellers.';
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS orders (
     address_id     INTEGER         REFERENCES addresses(address_id) ON DELETE SET NULL,  -- nullable for digital
     ordered_at     TIMESTAMPTZ     NOT NULL,
     payment_method TEXT            NOT NULL
-                                   CHECK (payment_method IN ('CARD','UPI','GIFT_CARD','COD','NET_BANKING','WALLET')),
+                                   CHECK (payment_method IN ('CARD','UPI','GIFT_CARD','COD','NETBANKING','NET_BANKING','WALLET','EMI')),
     total_amount   NUMERIC(12,2)   NOT NULL CHECK (total_amount >= 0),
     status         TEXT            NOT NULL
                                    CHECK (status IN ('PLACED','PACKED','SHIPPED','OUT_FOR_DELIVERY',
@@ -224,10 +224,11 @@ CREATE TABLE IF NOT EXISTS returns (
     line_no       SMALLINT        NOT NULL,
     reason        TEXT            NOT NULL
                                   CHECK (reason IN ('QUALITY_ISSUE','WRONG_ITEM',
-                                                    'NOT_AS_DESCRIBED','CHANGED_MIND','DAMAGED')),
+                                                    'NOT_AS_DESCRIBED','CHANGED_MIND','DAMAGED',
+                                                    'NO_LONGER_NEEDED','SIZE_ISSUE')),
     requested_at  TIMESTAMPTZ     NOT NULL,
     status        TEXT            NOT NULL
-                                  CHECK (status IN ('REQUESTED','APPROVED','REJECTED','REFUNDED')),
+                                  CHECK (status IN ('REQUESTED','APPROVED','REJECTED','REFUNDED','PICKED_UP')),
     refund_amount NUMERIC(12,2)   CHECK (refund_amount >= 0),  -- NULL until refund issued
     FOREIGN KEY (order_id, line_no) REFERENCES order_items(order_id, line_no) ON DELETE RESTRICT
 );

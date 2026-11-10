@@ -1,0 +1,81 @@
+=== R04 run 1 ===
+Sort  (cost=2918.72..2918.74 rows=5 width=34) (actual time=2.908..2.908 rows=4.00 loops=1)
+  Sort Key: o.ordered_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=1411
+  ->  GroupAggregate  (cost=2918.54..2918.67 rows=5 width=34) (actual time=2.899..2.901 rows=4.00 loops=1)
+        Group Key: o.order_id
+        Buffers: shared hit=1408
+        ->  Sort  (cost=2918.54..2918.57 rows=10 width=28) (actual time=2.894..2.894 rows=6.00 loops=1)
+              Sort Key: o.order_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=1408
+              ->  Nested Loop  (cost=0.42..2918.38 rows=10 width=28) (actual time=0.124..2.889 rows=6.00 loops=1)
+                    Buffers: shared hit=1405
+                    ->  Seq Scan on orders o  (cost=0.00..2892.00 rows=5 width=26) (actual time=0.119..2.875 rows=4.00 loops=1)
+                          Filter: (customer_id = 1042)
+                          Rows Removed by Filter: 119996
+                          Buffers: shared hit=1392
+                    ->  Index Only Scan using order_items_pkey on order_items oi  (cost=0.42..5.25 rows=2 width=6) (actual time=0.003..0.003 rows=1.50 loops=4)
+                          Index Cond: (order_id = o.order_id)
+                          Heap Fetches: 0
+                          Index Searches: 4
+                          Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=179
+Planning Time: 0.356 ms
+Execution Time: 2.935 ms
+=== R04 run 2 ===
+Sort  (cost=2918.72..2918.74 rows=5 width=34) (actual time=3.008..3.008 rows=4.00 loops=1)
+  Sort Key: o.ordered_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=1411
+  ->  GroupAggregate  (cost=2918.54..2918.67 rows=5 width=34) (actual time=2.999..3.000 rows=4.00 loops=1)
+        Group Key: o.order_id
+        Buffers: shared hit=1408
+        ->  Sort  (cost=2918.54..2918.57 rows=10 width=28) (actual time=2.994..2.994 rows=6.00 loops=1)
+              Sort Key: o.order_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=1408
+              ->  Nested Loop  (cost=0.42..2918.38 rows=10 width=28) (actual time=0.166..2.988 rows=6.00 loops=1)
+                    Buffers: shared hit=1405
+                    ->  Seq Scan on orders o  (cost=0.00..2892.00 rows=5 width=26) (actual time=0.159..2.972 rows=4.00 loops=1)
+                          Filter: (customer_id = 1042)
+                          Rows Removed by Filter: 119996
+                          Buffers: shared hit=1392
+                    ->  Index Only Scan using order_items_pkey on order_items oi  (cost=0.42..5.25 rows=2 width=6) (actual time=0.003..0.003 rows=1.50 loops=4)
+                          Index Cond: (order_id = o.order_id)
+                          Heap Fetches: 0
+                          Index Searches: 4
+                          Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=179
+Planning Time: 0.384 ms
+Execution Time: 3.044 ms
+=== R04 run 3 ===
+Sort  (cost=2918.72..2918.74 rows=5 width=34) (actual time=3.093..3.094 rows=4.00 loops=1)
+  Sort Key: o.ordered_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=1411
+  ->  GroupAggregate  (cost=2918.54..2918.67 rows=5 width=34) (actual time=3.081..3.083 rows=4.00 loops=1)
+        Group Key: o.order_id
+        Buffers: shared hit=1408
+        ->  Sort  (cost=2918.54..2918.57 rows=10 width=28) (actual time=3.076..3.076 rows=6.00 loops=1)
+              Sort Key: o.order_id
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=1408
+              ->  Nested Loop  (cost=0.42..2918.38 rows=10 width=28) (actual time=0.123..3.070 rows=6.00 loops=1)
+                    Buffers: shared hit=1405
+                    ->  Seq Scan on orders o  (cost=0.00..2892.00 rows=5 width=26) (actual time=0.119..3.057 rows=4.00 loops=1)
+                          Filter: (customer_id = 1042)
+                          Rows Removed by Filter: 119996
+                          Buffers: shared hit=1392
+                    ->  Index Only Scan using order_items_pkey on order_items oi  (cost=0.42..5.25 rows=2 width=6) (actual time=0.003..0.003 rows=1.50 loops=4)
+                          Index Cond: (order_id = o.order_id)
+                          Heap Fetches: 0
+                          Index Searches: 4
+                          Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=179
+Planning Time: 0.326 ms
+Execution Time: 3.122 ms

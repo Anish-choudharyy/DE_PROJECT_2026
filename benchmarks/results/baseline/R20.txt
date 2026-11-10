@@ -1,0 +1,75 @@
+=== R20 run 1 ===
+WindowAgg  (cost=3994.97..4078.25 rows=560 width=68) (actual time=5.465..6.400 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1430
+  ->  GroupAggregate  (cost=3994.82..4069.85 rows=560 width=36) (actual time=5.442..6.387 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=1430
+        ->  Gather Merge  (cost=3994.82..4058.65 rows=560 width=9) (actual time=5.416..6.152 rows=6189.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=1430
+              ->  Sort  (cost=2994.81..2995.64 rows=329 width=9) (actual time=4.348..4.401 rows=3094.50 loops=2)
+                    Sort Key: ((orders.ordered_at)::date)
+                    Sort Method: quicksort  Memory: 192kB
+                    Buffers: shared hit=1430
+                    Worker 0:  Sort Method: quicksort  Memory: 195kB
+                    ->  Parallel Seq Scan on orders  (cost=0.00..2981.06 rows=329 width=9) (actual time=3.715..4.193 rows=3094.50 loops=2)
+                          Filter: ((status <> 'CANCELLED'::text) AND ((ordered_at)::date >= '2026-06-01'::date) AND ((ordered_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 56906
+                          Buffers: shared hit=1392
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.212 ms
+Execution Time: 6.439 ms
+=== R20 run 2 ===
+WindowAgg  (cost=3994.97..4078.25 rows=560 width=68) (actual time=5.124..6.018 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1430
+  ->  GroupAggregate  (cost=3994.82..4069.85 rows=560 width=36) (actual time=5.099..6.004 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=1430
+        ->  Gather Merge  (cost=3994.82..4058.65 rows=560 width=9) (actual time=5.072..5.750 rows=6189.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=1430
+              ->  Sort  (cost=2994.81..2995.64 rows=329 width=9) (actual time=4.132..4.192 rows=3094.50 loops=2)
+                    Sort Key: ((orders.ordered_at)::date)
+                    Sort Method: quicksort  Memory: 191kB
+                    Buffers: shared hit=1430
+                    Worker 0:  Sort Method: quicksort  Memory: 195kB
+                    ->  Parallel Seq Scan on orders  (cost=0.00..2981.06 rows=329 width=9) (actual time=3.601..4.018 rows=3094.50 loops=2)
+                          Filter: ((status <> 'CANCELLED'::text) AND ((ordered_at)::date >= '2026-06-01'::date) AND ((ordered_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 56906
+                          Buffers: shared hit=1392
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.188 ms
+Execution Time: 6.051 ms
+=== R20 run 3 ===
+WindowAgg  (cost=3994.97..4078.25 rows=560 width=68) (actual time=5.410..6.324 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((orders.ordered_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1430
+  ->  GroupAggregate  (cost=3994.82..4069.85 rows=560 width=36) (actual time=5.379..6.309 rows=30.00 loops=1)
+        Group Key: ((orders.ordered_at)::date)
+        Buffers: shared hit=1430
+        ->  Gather Merge  (cost=3994.82..4058.65 rows=560 width=9) (actual time=5.347..6.057 rows=6189.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=1430
+              ->  Sort  (cost=2994.81..2995.64 rows=329 width=9) (actual time=4.418..4.480 rows=3094.50 loops=2)
+                    Sort Key: ((orders.ordered_at)::date)
+                    Sort Method: quicksort  Memory: 192kB
+                    Buffers: shared hit=1430
+                    Worker 0:  Sort Method: quicksort  Memory: 194kB
+                    ->  Parallel Seq Scan on orders  (cost=0.00..2981.06 rows=329 width=9) (actual time=3.814..4.290 rows=3094.50 loops=2)
+                          Filter: ((status <> 'CANCELLED'::text) AND ((ordered_at)::date >= '2026-06-01'::date) AND ((ordered_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 56906
+                          Buffers: shared hit=1392
+Planning:
+  Buffers: shared hit=109
+Planning Time: 0.185 ms
+Execution Time: 6.357 ms

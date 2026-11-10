@@ -1,0 +1,72 @@
+=== R09 run 1 ===
+GroupAggregate  (cost=4568.43..4585.23 rows=560 width=49) (actual time=20.360..22.562 rows=12.00 loops=1)
+  Group Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+  Buffers: shared hit=1773
+  ->  Sort  (cost=4568.43..4569.83 rows=560 width=14) (actual time=20.076..20.746 rows=37166.00 loops=1)
+        Sort Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+        Sort Method: quicksort  Memory: 2698kB
+        Buffers: shared hit=1773
+        ->  Hash Join  (cost=1048.00..4542.87 rows=560 width=14) (actual time=9.536..18.138 rows=37166.00 loops=1)
+              Hash Cond: (o.customer_id = c.customer_id)
+              Buffers: shared hit=1765
+              ->  Seq Scan on orders o  (cost=0.00..3492.00 rows=560 width=17) (actual time=7.078..10.990 rows=37166.00 loops=1)
+                    Filter: ((status <> 'CANCELLED'::text) AND (EXTRACT(year FROM ordered_at) = '2026'::numeric))
+                    Rows Removed by Filter: 82834
+                    Buffers: shared hit=1392
+              ->  Hash  (cost=673.00..673.00 rows=30000 width=5) (actual time=2.438..2.438 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=373
+                    ->  Seq Scan on customers c  (cost=0.00..673.00 rows=30000 width=5) (actual time=0.006..1.431 rows=30000.00 loops=1)
+                          Buffers: shared hit=373
+Planning:
+  Buffers: shared hit=271
+Planning Time: 0.420 ms
+Execution Time: 22.598 ms
+=== R09 run 2 ===
+GroupAggregate  (cost=4568.43..4585.23 rows=560 width=49) (actual time=20.424..22.387 rows=12.00 loops=1)
+  Group Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+  Buffers: shared hit=1773
+  ->  Sort  (cost=4568.43..4569.83 rows=560 width=14) (actual time=20.145..20.759 rows=37166.00 loops=1)
+        Sort Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+        Sort Method: quicksort  Memory: 2698kB
+        Buffers: shared hit=1773
+        ->  Hash Join  (cost=1048.00..4542.87 rows=560 width=14) (actual time=9.170..18.133 rows=37166.00 loops=1)
+              Hash Cond: (o.customer_id = c.customer_id)
+              Buffers: shared hit=1765
+              ->  Seq Scan on orders o  (cost=0.00..3492.00 rows=560 width=17) (actual time=6.697..10.716 rows=37166.00 loops=1)
+                    Filter: ((status <> 'CANCELLED'::text) AND (EXTRACT(year FROM ordered_at) = '2026'::numeric))
+                    Rows Removed by Filter: 82834
+                    Buffers: shared hit=1392
+              ->  Hash  (cost=673.00..673.00 rows=30000 width=5) (actual time=2.453..2.453 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=373
+                    ->  Seq Scan on customers c  (cost=0.00..673.00 rows=30000 width=5) (actual time=0.007..1.436 rows=30000.00 loops=1)
+                          Buffers: shared hit=373
+Planning:
+  Buffers: shared hit=271
+Planning Time: 0.384 ms
+Execution Time: 22.421 ms
+=== R09 run 3 ===
+GroupAggregate  (cost=4568.43..4585.23 rows=560 width=49) (actual time=19.878..21.913 rows=12.00 loops=1)
+  Group Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+  Buffers: shared hit=1773
+  ->  Sort  (cost=4568.43..4569.83 rows=560 width=14) (actual time=19.600..20.228 rows=37166.00 loops=1)
+        Sort Key: (date_trunc('month'::text, o.ordered_at)), c.is_prime
+        Sort Method: quicksort  Memory: 2698kB
+        Buffers: shared hit=1773
+        ->  Hash Join  (cost=1048.00..4542.87 rows=560 width=14) (actual time=9.077..17.705 rows=37166.00 loops=1)
+              Hash Cond: (o.customer_id = c.customer_id)
+              Buffers: shared hit=1765
+              ->  Seq Scan on orders o  (cost=0.00..3492.00 rows=560 width=17) (actual time=6.462..10.394 rows=37166.00 loops=1)
+                    Filter: ((status <> 'CANCELLED'::text) AND (EXTRACT(year FROM ordered_at) = '2026'::numeric))
+                    Rows Removed by Filter: 82834
+                    Buffers: shared hit=1392
+              ->  Hash  (cost=673.00..673.00 rows=30000 width=5) (actual time=2.593..2.594 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                    Buffers: shared hit=373
+                    ->  Seq Scan on customers c  (cost=0.00..673.00 rows=30000 width=5) (actual time=0.003..1.472 rows=30000.00 loops=1)
+                          Buffers: shared hit=373
+Planning:
+  Buffers: shared hit=271
+Planning Time: 0.361 ms
+Execution Time: 21.944 ms

@@ -1,0 +1,114 @@
+=== R19 run 1 ===
+Sort  (cost=8670719.17..8670721.52 rows=938 width=46) (actual time=8963.089..8963.105 rows=937.00 loops=1)
+  Sort Key: ((SubPlan 2)) DESC, p.product_id
+  Sort Method: quicksort  Memory: 86kB
+  Buffers: shared hit=2991908
+  InitPlan 3
+    ->  Seq Scan on categories  (cost=0.00..24.75 rows=6 width=4) (actual time=0.003..0.004 rows=1.00 loops=1)
+          Filter: (category_name = 'Mobiles'::text)
+          Rows Removed by Filter: 39
+          Buffers: shared hit=1
+  ->  Seq Scan on products p  (cost=0.00..8670648.12 rows=938 width=46) (actual time=9.986..8962.582 rows=937.00 loops=1)
+        Filter: (category_id = (InitPlan 3).col1)
+        Rows Removed by Filter: 29063
+        Buffers: shared hit=2991902
+        SubPlan 1
+          ->  Aggregate  (cost=4658.81..4658.82 rows=1 width=8) (actual time=4.804..4.804 rows=1.00 loops=937)
+                Buffers: shared hit=1507218
+                ->  Nested Loop  (cost=0.29..4658.79 rows=9 width=8) (actual time=0.697..4.803 rows=8.19 loops=937)
+                      Buffers: shared hit=1507218
+                      ->  Seq Scan on order_items oi  (cost=0.00..4584.00 rows=9 width=4) (actual time=0.693..4.782 rows=8.19 loops=937)
+                            Filter: (product_id = p.product_id)
+                            Rows Removed by Filter: 239992
+                            Buffers: shared hit=1484208
+                      ->  Index Scan using orders_pkey on orders o  (cost=0.29..8.31 rows=1 width=12) (actual time=0.002..0.002 rows=1.00 loops=7670)
+                            Index Cond: (order_id = oi.order_id)
+                            Index Searches: 7670
+                            Buffers: shared hit=23010
+        SubPlan 2
+          ->  Aggregate  (cost=4584.02..4584.03 rows=1 width=8) (actual time=4.758..4.758 rows=1.00 loops=937)
+                Buffers: shared hit=1484208
+                ->  Seq Scan on order_items oi_1  (cost=0.00..4584.00 rows=9 width=2) (actual time=0.689..4.756 rows=8.19 loops=937)
+                      Filter: (product_id = p.product_id)
+                      Rows Removed by Filter: 239992
+                      Buffers: shared hit=1484208
+Planning:
+  Buffers: shared hit=255
+Planning Time: 0.503 ms
+Execution Time: 8963.162 ms
+=== R19 run 2 ===
+Sort  (cost=8670719.17..8670721.52 rows=938 width=46) (actual time=9106.163..9106.181 rows=937.00 loops=1)
+  Sort Key: ((SubPlan 2)) DESC, p.product_id
+  Sort Method: quicksort  Memory: 86kB
+  Buffers: shared hit=2991908
+  InitPlan 3
+    ->  Seq Scan on categories  (cost=0.00..24.75 rows=6 width=4) (actual time=0.003..0.004 rows=1.00 loops=1)
+          Filter: (category_name = 'Mobiles'::text)
+          Rows Removed by Filter: 39
+          Buffers: shared hit=1
+  ->  Seq Scan on products p  (cost=0.00..8670648.12 rows=938 width=46) (actual time=10.424..9105.703 rows=937.00 loops=1)
+        Filter: (category_id = (InitPlan 3).col1)
+        Rows Removed by Filter: 29063
+        Buffers: shared hit=2991902
+        SubPlan 1
+          ->  Aggregate  (cost=4658.81..4658.82 rows=1 width=8) (actual time=4.882..4.882 rows=1.00 loops=937)
+                Buffers: shared hit=1507218
+                ->  Nested Loop  (cost=0.29..4658.79 rows=9 width=8) (actual time=0.710..4.880 rows=8.19 loops=937)
+                      Buffers: shared hit=1507218
+                      ->  Seq Scan on order_items oi  (cost=0.00..4584.00 rows=9 width=4) (actual time=0.705..4.860 rows=8.19 loops=937)
+                            Filter: (product_id = p.product_id)
+                            Rows Removed by Filter: 239992
+                            Buffers: shared hit=1484208
+                      ->  Index Scan using orders_pkey on orders o  (cost=0.29..8.31 rows=1 width=12) (actual time=0.002..0.002 rows=1.00 loops=7670)
+                            Index Cond: (order_id = oi.order_id)
+                            Index Searches: 7670
+                            Buffers: shared hit=23010
+        SubPlan 2
+          ->  Aggregate  (cost=4584.02..4584.03 rows=1 width=8) (actual time=4.833..4.833 rows=1.00 loops=937)
+                Buffers: shared hit=1484208
+                ->  Seq Scan on order_items oi_1  (cost=0.00..4584.00 rows=9 width=2) (actual time=0.701..4.831 rows=8.19 loops=937)
+                      Filter: (product_id = p.product_id)
+                      Rows Removed by Filter: 239992
+                      Buffers: shared hit=1484208
+Planning:
+  Buffers: shared hit=255
+Planning Time: 0.565 ms
+Execution Time: 9106.234 ms
+=== R19 run 3 ===
+Sort  (cost=8670719.17..8670721.52 rows=938 width=46) (actual time=9044.518..9044.535 rows=937.00 loops=1)
+  Sort Key: ((SubPlan 2)) DESC, p.product_id
+  Sort Method: quicksort  Memory: 86kB
+  Buffers: shared hit=2991908
+  InitPlan 3
+    ->  Seq Scan on categories  (cost=0.00..24.75 rows=6 width=4) (actual time=0.003..0.004 rows=1.00 loops=1)
+          Filter: (category_name = 'Mobiles'::text)
+          Rows Removed by Filter: 39
+          Buffers: shared hit=1
+  ->  Seq Scan on products p  (cost=0.00..8670648.12 rows=938 width=46) (actual time=10.133..9044.095 rows=937.00 loops=1)
+        Filter: (category_id = (InitPlan 3).col1)
+        Rows Removed by Filter: 29063
+        Buffers: shared hit=2991902
+        SubPlan 1
+          ->  Aggregate  (cost=4658.81..4658.82 rows=1 width=8) (actual time=4.836..4.836 rows=1.00 loops=937)
+                Buffers: shared hit=1507218
+                ->  Nested Loop  (cost=0.29..4658.79 rows=9 width=8) (actual time=0.701..4.835 rows=8.19 loops=937)
+                      Buffers: shared hit=1507218
+                      ->  Seq Scan on order_items oi  (cost=0.00..4584.00 rows=9 width=4) (actual time=0.697..4.818 rows=8.19 loops=937)
+                            Filter: (product_id = p.product_id)
+                            Rows Removed by Filter: 239992
+                            Buffers: shared hit=1484208
+                      ->  Index Scan using orders_pkey on orders o  (cost=0.29..8.31 rows=1 width=12) (actual time=0.002..0.002 rows=1.00 loops=7670)
+                            Index Cond: (order_id = oi.order_id)
+                            Index Searches: 7670
+                            Buffers: shared hit=23010
+        SubPlan 2
+          ->  Aggregate  (cost=4584.02..4584.03 rows=1 width=8) (actual time=4.813..4.813 rows=1.00 loops=937)
+                Buffers: shared hit=1484208
+                ->  Seq Scan on order_items oi_1  (cost=0.00..4584.00 rows=9 width=2) (actual time=0.696..4.812 rows=8.19 loops=937)
+                      Filter: (product_id = p.product_id)
+                      Rows Removed by Filter: 239992
+                      Buffers: shared hit=1484208
+Planning:
+  Buffers: shared hit=255
+Planning Time: 0.542 ms
+Execution Time: 9044.592 ms
